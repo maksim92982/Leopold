@@ -1,6 +1,8 @@
 # Фудбалска школа Leopold
 
-Сајт школе фудбала у Београду. Статички: `index.html` + слика у `assets/`.
+Сајт школе фудбала у Београду. Статички: `index.html` + слике у `assets/`.
+
+Репозиторијум: [maksim92982/Leopold](https://github.com/maksim92982/Leopold)
 
 ## Локално
 
@@ -12,20 +14,6 @@ npx --yes serve .
 
 ## GitHub → Vercel (бесплатно)
 
-1. На GitHub направите нови репозиторијум и отпремите ову фасциклу (`leopold-skola`) као корен репоа.
-2. На [vercel.com](https://vercel.com) → Add New Project → увезите тај репо.
-3. Framework Preset: **Other**. Root Directory: празно (фајл `index.html` мора бити у корену).
-4. Deploy. Домен `*.vercel.app` је бесплатан.
-
-Репозиторијум: [maksim92982/Leopold](https://github.com/maksim92982/Leopold)
-
-```bash
-git remote add origin git@github.com:maksim92982/Leopold.git
-git push -u origin main
-```
-
-## Шта још унети ручно
-
-- Тачна адреса терена (сада се шаље на Вајбер после пријаве)
-- Реална имена тренера ако нису ова измишљена
-- Цене ако се разликују
+1. На [vercel.com](https://vercel.com) → Add New Project → увезите репо `maksim92982/Leopold`.
+2. Framework Preset: **Other**. Root Directory оставите празно (`index.html` је у корену).
+3. Deploy. Домен `*.vercel.app` је бесплатан.
