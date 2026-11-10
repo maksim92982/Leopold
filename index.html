@@ -93,9 +93,11 @@
       .header-bar {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
+        gap: 12px;
+        width: min(1152px, 100%);
         min-height: 84px;
+        margin-inline: auto;
+        padding: 0 8px 0 16px;
       }
       .brand {
         display: flex;
@@ -144,6 +146,8 @@
         display: none;
         width: 44px;
         height: 44px;
+        margin-left: auto;
+        flex-shrink: 0;
         border: 1px solid var(--line);
         border-radius: 12px;
         background: var(--bg-3);
@@ -163,6 +167,7 @@
         align-items: center;
         gap: 18px;
         min-width: 0;
+        margin-left: auto;
       }
       .site-nav {
         display: flex;
@@ -180,6 +185,38 @@
       }
       .site-nav a:hover,
       .site-nav a:focus-visible { color: var(--gold); }
+
+      .lang-bar {
+        border-top: 1px solid var(--line);
+      }
+      .lang-bar-inner {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: min(1152px, 100%);
+        margin-inline: auto;
+        padding: 6px 8px 8px 16px;
+      }
+      .lang-btn {
+        min-height: 36px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .lang-btn.is-active {
+        background: linear-gradient(135deg, var(--gold), var(--gold-2));
+        border-color: transparent;
+        color: #fff;
+      }
 
       .header-cta {
         display: inline-flex;
@@ -311,7 +348,7 @@
         font-size: 13px;
       }
 
-      section { padding: 84px 0; scroll-margin-top: 84px; }
+      section { padding: 84px 0; scroll-margin-top: 140px; }
       .section-head {
         display: grid;
         gap: 12px;
@@ -609,15 +646,15 @@
         }
         .photo-card, .camp-photo { min-height: 280px; }
         .stats { grid-template-columns: 1fr; }
-        .header-actions { gap: 0; }
+        .header-actions { gap: 0; width: 0; margin: 0; overflow: visible; }
         .site-nav { display: none; }
-        .burger { display: grid; }
+        .burger { display: grid; margin-left: auto; }
         .nav-toggle:checked ~ .header-actions .site-nav {
           display: flex;
           position: absolute;
           left: 0;
           right: 0;
-          top: calc(84px + var(--safe-t));
+          top: 100%;
           flex-direction: column;
           align-items: stretch;
           gap: 0;
@@ -632,13 +669,13 @@
         .header-cta { display: none; }
         .mobile-cta { display: grid; }
         body { padding-bottom: calc(84px + var(--safe-b)); }
-        section { padding: 64px 0; }
-        .header-bar { position: relative; min-height: 76px; }
-        .site-header .wrap { position: relative; }
+        section { padding: 64px 0; scroll-margin-top: 128px; }
+        .header-bar { min-height: 76px; }
         .brand img { width: 44px; height: 44px; }
         .brand-name .brand-top,
         .brand-name .brand-city { font-size: 8px; letter-spacing: 0.08em; }
         .brand-name .brand-title { font-size: 14px; letter-spacing: 0.22em; }
+        .lang-btn { padding: 0 10px; font-size: 10px; min-height: 34px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -647,33 +684,40 @@
     </style>
   </head>
   <body>
-    <a class="skip" href="#sadrzaj">Пређи на садржај</a>
+    <a class="skip" href="#sadrzaj" data-i18n="skip">Пређи на садржај</a>
     <header class="site-header">
-      <div class="wrap header-bar">
-        <a class="brand" href="#naslovna" aria-label="Фудбалски тренинг центар Леополд, Београд">
-          <img src="assets/leopold-crest.jpg" alt="Грб тренинг центра Леополд">
+      <div class="header-bar">
+        <a class="brand" href="#naslovna" data-i18n-aria="brandAria">
+          <img src="assets/leopold-crest.jpg" alt="" data-i18n-alt="crestAlt">
           <span class="brand-name">
-            <span class="brand-top">Фудбалски тренинг центар</span>
-            <span class="brand-title">Леополд</span>
-            <span class="brand-city">Београд</span>
+            <span class="brand-top" data-i18n="brandTop">Фудбалски тренинг центар</span>
+            <span class="brand-title" data-i18n="brandTitle">Леополд</span>
+            <span class="brand-city" data-i18n="brandCity">Београд</span>
           </span>
         </a>
         <input class="nav-toggle" id="nav-toggle" type="checkbox">
-        <label class="burger" for="nav-toggle" aria-label="Отвори мени">
+        <div class="header-actions">
+          <nav class="site-nav" data-i18n-aria="navAria">
+            <a href="#o-nama" data-i18n="navAbout">О нама</a>
+            <a href="#programi" data-i18n="navPrograms">Програми</a>
+            <a href="#cene" data-i18n="navPrices">Цене</a>
+            <a href="#raspored" data-i18n="navSchedule">Распоред</a>
+            <a href="#treneri" data-i18n="navCoaches">Тренери</a>
+            <a href="#pitanja" data-i18n="navFaq">Питања</a>
+            <a href="#kamp" data-i18n="navCamp">Камп</a>
+            <a href="#kontakt" data-i18n="navContact">Контакт</a>
+          </nav>
+          <a class="header-cta" href="viber://chat?number=%2B381652125150" data-i18n="navCta">Вајбер упис</a>
+        </div>
+        <label class="burger" for="nav-toggle" data-i18n-aria="menuOpen">
           <span></span><span></span><span></span>
         </label>
-        <div class="header-actions">
-          <nav class="site-nav" aria-label="Главни мени">
-            <a href="#o-nama">О нама</a>
-            <a href="#programi">Програми</a>
-            <a href="#cene">Цене</a>
-            <a href="#raspored">Распоред</a>
-            <a href="#treneri">Тренери</a>
-            <a href="#pitanja">Питања</a>
-            <a href="#kamp">Камп</a>
-            <a href="#kontakt">Контакт</a>
-          </nav>
-          <a class="header-cta" href="viber://chat?number=%2B381652125150">Вајбер упис</a>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-bar-inner" role="group" aria-label="Language">
+          <button type="button" class="lang-btn is-active" data-lang="cyr">Кирилица</button>
+          <button type="button" class="lang-btn" data-lang="lat">Латиница</button>
+          <button type="button" class="lang-btn" data-lang="en">English</button>
         </div>
       </div>
     </header>
@@ -684,20 +728,20 @@
           <img src="assets/leopold-hero.jpg" alt="">
         </div>
         <div class="wrap hero-copy">
-          <p class="eyebrow">Београд · Србија</p>
-          <h1>Игра.<br>Карактер.<br>Leopold.</h1>
-          <p>
+          <p class="eyebrow" data-i18n="eyebrow">Београд · Србија</p>
+          <h1 data-i18n-html="heroTitle">Игра.<br>Карактер.<br>Leopold.</h1>
+          <p data-i18n="heroText">
             Дечја фудбалска школа за узраст од 4 до 16 година. Учимо технику, темпо и поштовање —
             без вике, без хаоса, са јасним планом за сваку групу.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="tel:+381652125150">Бесплатан пробни тренинг</a>
-            <a class="btn btn-ghost" href="#raspored">Погледај распоред</a>
+            <a class="btn btn-gold" href="tel:+381652125150" data-i18n="heroCta">Бесплатан пробни тренинг</a>
+            <a class="btn btn-ghost" href="#raspored" data-i18n="heroSchedule">Погледај распоред</a>
           </div>
           <div class="stats">
-            <div class="stat"><b>4–16</b><span>година, мале групе</span></div>
-            <div class="stat"><b>2–3×</b><span>тренинга недељно</span></div>
-            <div class="stat"><b>0 РСД</b><span>пробни термин</span></div>
+            <div class="stat"><b>4–16</b><span data-i18n="statAge">година, мале групе</span></div>
+            <div class="stat"><b>2–3×</b><span data-i18n="statWeek">тренинга недељно</span></div>
+            <div class="stat"><b>0 РСД</b><span data-i18n="statTrial">пробни термин</span></div>
           </div>
         </div>
       </section>
@@ -706,9 +750,9 @@
         <div class="wrap split">
           <div>
             <div class="section-head">
-              <p class="kicker">01 · О нама</p>
-              <h2>Академија која гради лавове, не само стрелце</h2>
-              <p class="lede">
+              <p class="kicker" data-i18n="aboutKicker">01 · О нама</p>
+              <h2 data-i18n="aboutTitle">Академија која гради лавове, не само стрелце</h2>
+              <p class="lede" data-i18n="aboutLede">
                 Leopold је београдска школа фудбала названа по лаву: храброст на лопти,
                 мир у одлуци, понос у дресу. Радимо са децом која први пут шутирају —
                 и са онима који већ траже клубски ритам.
@@ -718,31 +762,31 @@
               <div class="value">
                 <div class="value-num">01</div>
                 <div>
-                  <strong>Мале групе</strong>
-                  <p>До 12 деце на тренеру. Свако додирне лопту, свако чује инструкцију.</p>
+                  <strong data-i18n="value1Title">Мале групе</strong>
+                  <p data-i18n="value1Text">До 12 деце на тренеру. Свако додирне лопту, свако чује инструкцију.</p>
                 </div>
               </div>
               <div class="value">
                 <div class="value-num">02</div>
                 <div>
-                  <strong>Лиценцирани штаб</strong>
-                  <p>Тренинзи по узрасту: моторика, техника, игра 1 на 1 и мали терени.</p>
+                  <strong data-i18n="value2Title">Лиценцирани штаб</strong>
+                  <p data-i18n="value2Text">Тренинзи по узрасту: моторика, техника, игра 1 на 1 и мали терени.</p>
                 </div>
               </div>
               <div class="value">
                 <div class="value-num">03</div>
                 <div>
-                  <strong>Безбедно окружење</strong>
-                  <p>Родитељи добијају јасан распоред, правила и контакт тренера од првог дана.</p>
+                  <strong data-i18n="value3Title">Безбедно окружење</strong>
+                  <p data-i18n="value3Text">Родитељи добијају јасан распоред, правила и контакт тренера од првог дана.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="photo-card">
-            <img src="assets/leopold-training.jpg" alt="Тренинг реквизити на терену школе Leopold">
+            <img src="assets/leopold-training.jpg" alt="" data-i18n-alt="trainingAlt">
             <div class="photo-badge">
               <img src="assets/leopold-crest.jpg" alt="">
-              <span>Leopold · Београд</span>
+              <span data-i18n="photoBadge">Leopold · Београд</span>
             </div>
           </div>
         </div>
@@ -751,30 +795,30 @@
       <section id="programi">
         <div class="wrap">
           <div class="section-head">
-            <p class="kicker">02 · Програми обуке</p>
-            <h2>Четири групе, један стандард</h2>
-            <p class="lede">Програм прати узраст. Нико не ради вежбе старијих „јер је тата рекао да је спреман“.</p>
+            <p class="kicker" data-i18n="progKicker">02 · Програми обуке</p>
+            <h2 data-i18n="progTitle">Четири групе, један стандард</h2>
+            <p class="lede" data-i18n="progLede">Програм прати узраст. Нико не ради вежбе старијих „јер је тата рекао да је спреман“.</p>
           </div>
           <div class="grid-4">
             <article class="card">
-              <span class="age">4–6 година</span>
-              <h3>Лавићи</h3>
-              <p>Игра, координација, први додир лопте. Тренинг до 60 минута, кроз станице и игре.</p>
+              <span class="age" data-i18n="g1Age">4–6 година</span>
+              <h3 data-i18n="g1Title">Лавићи</h3>
+              <p data-i18n="g1Text">Игра, координација, први додир лопте. Тренинг до 60 минута, кроз станице и игре.</p>
             </article>
             <article class="card">
-              <span class="age">7–9 година</span>
-              <h3>Млади лавови</h3>
-              <p>Вођење, додавање, шутирање. Уводимо мини утакмице и основне позиције.</p>
+              <span class="age" data-i18n="g2Age">7–9 година</span>
+              <h3 data-i18n="g2Title">Млади лавови</h3>
+              <p data-i18n="g2Text">Вођење, додавање, шутирање. Уводимо мини утакмице и основне позиције.</p>
             </article>
             <article class="card">
-              <span class="age">10–12 година</span>
-              <h3>Кадети</h3>
-              <p>Тактика малог терена, прелазак из одбране у напад, рад са обе ноге.</p>
+              <span class="age" data-i18n="g3Age">10–12 година</span>
+              <h3 data-i18n="g3Title">Кадети</h3>
+              <p data-i18n="g3Text">Тактика малог терена, прелазак из одбране у напад, рад са обе ноге.</p>
             </article>
             <article class="card">
-              <span class="age">13–16 година</span>
-              <h3>Јуниори</h3>
-              <p>Интензитет, кондиција и клубски ритам. Припрема за такмичење и пробе.</p>
+              <span class="age" data-i18n="g4Age">13–16 година</span>
+              <h3 data-i18n="g4Title">Јуниори</h3>
+              <p data-i18n="g4Text">Интензитет, кондиција и клубски ритам. Припрема за такмичење и пробе.</p>
             </article>
           </div>
         </div>
@@ -783,26 +827,26 @@
       <section id="cene">
         <div class="wrap">
           <div class="section-head">
-            <p class="kicker">03 · Цене</p>
-            <h2>Јасно, без ситних слова</h2>
-            <p class="lede">Први тренинг је бесплатан. Месечна карта важи од дана уплате. Опрема школе није обавезна за пробни термин.</p>
+            <p class="kicker" data-i18n="priceKicker">03 · Цене</p>
+            <h2 data-i18n="priceTitle">Јасно, без ситних слова</h2>
+            <p class="lede" data-i18n="priceLede">Први тренинг је бесплатан. Месечна карта важи од дана уплате. Опрема школе није обавезна за пробни термин.</p>
           </div>
           <div class="grid-3">
             <article class="card price-card">
-              <h3>Пробни</h3>
-              <p class="price">0 <small>РСД</small></p>
-              <p>Један тренинг у правој групи. Дођите у патикама и удобној одећи.</p>
+              <h3 data-i18n="p1Title">Пробни</h3>
+              <p class="price">0 <small data-i18n="rsd">РСД</small></p>
+              <p data-i18n="p1Text">Један тренинг у правој групи. Дођите у патикама и удобној одећи.</p>
             </article>
             <article class="card price-card featured">
-              <span class="ribbon">НАЈЧЕШЋЕ</span>
-              <h3>Месечно</h3>
-              <p class="price">5.900 <small>РСД</small></p>
-              <p>Два тренинга недељно, план за месец и повратна информација родитељима.</p>
+              <span class="ribbon" data-i18n="ribbon">НАЈЧЕШЋЕ</span>
+              <h3 data-i18n="p2Title">Месечно</h3>
+              <p class="price">5.900 <small data-i18n="rsd">РСД</small></p>
+              <p data-i18n="p2Text">Два тренинга недељно, план за месец и повратна информација родитељима.</p>
             </article>
             <article class="card price-card">
-              <h3>Интензив</h3>
-              <p class="price">7.900 <small>РСД</small></p>
-              <p>Три тренинга недељно за кадете и јуниоре. Приоритет на утакмицама школе.</p>
+              <h3 data-i18n="p3Title">Интензив</h3>
+              <p class="price">7.900 <small data-i18n="rsd">РСД</small></p>
+              <p data-i18n="p3Text">Три тренинга недељно за кадете и јуниоре. Приоритет на утакмицама школе.</p>
             </article>
           </div>
         </div>
@@ -811,43 +855,43 @@
       <section id="raspored">
         <div class="wrap">
           <div class="section-head">
-            <p class="kicker">04 · Распоред</p>
-            <h2>Када тренирамо</h2>
-            <p class="lede">Термини су у Београду, поподне. Тачна адреса терена стиже на Вајбер после пријаве — да група остане мала.</p>
+            <p class="kicker" data-i18n="schKicker">04 · Распоред</p>
+            <h2 data-i18n="schTitle">Када тренирамо</h2>
+            <p class="lede" data-i18n="schLede">Термини су у Београду, поподне. Тачна адреса терена стиже на Вајбер после пријаве — да група остане мала.</p>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Група</th>
-                  <th>Узраст</th>
-                  <th>Дани</th>
-                  <th>Време</th>
+                  <th data-i18n="thGroup">Група</th>
+                  <th data-i18n="thAge">Узраст</th>
+                  <th data-i18n="thDays">Дани</th>
+                  <th data-i18n="thTime">Време</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Лавићи</td>
+                  <td data-i18n="g1Title">Лавићи</td>
                   <td>4–6</td>
-                  <td>уторак и четвртак</td>
+                  <td data-i18n="d1">уторак и четвртак</td>
                   <td>17:00–18:00</td>
                 </tr>
                 <tr>
-                  <td>Млади лавови</td>
+                  <td data-i18n="g2Title">Млади лавови</td>
                   <td>7–9</td>
-                  <td>понедељак и среда</td>
+                  <td data-i18n="d2">понедељак и среда</td>
                   <td>17:30–18:45</td>
                 </tr>
                 <tr>
-                  <td>Кадети</td>
+                  <td data-i18n="g3Title">Кадети</td>
                   <td>10–12</td>
-                  <td>понедељак, среда, петак</td>
+                  <td data-i18n="d3">понедељак, среда, петак</td>
                   <td>18:30–20:00</td>
                 </tr>
                 <tr>
-                  <td>Јуниори</td>
+                  <td data-i18n="g4Title">Јуниори</td>
                   <td>13–16</td>
-                  <td>уторак, четвртак, субота</td>
+                  <td data-i18n="d4">уторак, четвртак, субота</td>
                   <td>19:00–20:30</td>
                 </tr>
               </tbody>
@@ -859,25 +903,25 @@
       <section id="treneri">
         <div class="wrap">
           <div class="section-head">
-            <p class="kicker">05 · Тренери</p>
-            <h2>Штаб који држи ниво</h2>
-            <p class="lede">Исти грб, иста методологија. Тренери раде заједно, не као три одвојене школе у једној хали.</p>
+            <p class="kicker" data-i18n="coKicker">05 · Тренери</p>
+            <h2 data-i18n="coTitle">Штаб који држи ниво</h2>
+            <p class="lede" data-i18n="coLede">Исти грб, иста методологија. Тренери раде заједно, не као три одвојене школе у једној хали.</p>
           </div>
           <div class="grid-3 coaches">
             <article class="card coach">
               <img class="crest-chip" src="assets/leopold-crest.jpg" alt="">
-              <h3>Никола Јовановић</h3>
-              <p>Главни тренер. УЕФА Б, рад са кадетима и јуниорима, акценат на темпу и одлукама.</p>
+              <h3 data-i18n="c1Name">Никола Јовановић</h3>
+              <p data-i18n="c1Text">Главни тренер. УЕФА Б, рад са кадетима и јуниорима, акценат на темпу и одлукама.</p>
             </article>
             <article class="card coach">
               <img class="crest-chip" src="assets/leopold-crest.jpg" alt="">
-              <h3>Марко Петровић</h3>
-              <p>Тренер млађих група. Моторика, игра и навика да се лопта чува, не само шутира.</p>
+              <h3 data-i18n="c2Name">Марко Петровић</h3>
+              <p data-i18n="c2Text">Тренер млађих група. Моторика, игра и навика да се лопта чува, не само шутира.</p>
             </article>
             <article class="card coach">
               <img class="crest-chip" src="assets/leopold-crest.jpg" alt="">
-              <h3>Ана Стојановић</h3>
-              <p>Технички тренер. Рад са обе ноге, први додир и прелазак на утакмични ритам.</p>
+              <h3 data-i18n="c3Name">Ана Стојановић</h3>
+              <p data-i18n="c3Text">Технички тренер. Рад са обе ноге, први додир и прелазак на утакмични ритам.</p>
             </article>
           </div>
         </div>
@@ -886,24 +930,24 @@
       <section id="pitanja">
         <div class="wrap faq">
           <div class="section-head">
-            <p class="kicker">06 · Честа питања</p>
-            <h2>Пре него што напишете</h2>
+            <p class="kicker" data-i18n="faqKicker">06 · Честа питања</p>
+            <h2 data-i18n="faqTitle">Пре него што напишете</h2>
           </div>
           <details open>
-            <summary>Да ли дете мора да има искуство?</summary>
-            <p>Не. Лавићи крећу од нуле. Старије групе процењујемо на пробном тренингу и предлажемо ниво без притиска.</p>
+            <summary data-i18n="faq1Q">Да ли дете мора да има искуство?</summary>
+            <p data-i18n="faq1A">Не. Лавићи крећу од нуле. Старије групе процењујемо на пробном тренингу и предлажемо ниво без притиска.</p>
           </details>
           <details>
-            <summary>Шта понети на први тренинг?</summary>
-            <p>Патике, тренерка, флаша воде. Штитнике препоручујемо од групе Млади лавови. Дрес школе није обавезан први дан.</p>
+            <summary data-i18n="faq2Q">Шта понети на први тренинг?</summary>
+            <p data-i18n="faq2A">Патике, тренерка, флаша воде. Штитнике препоручујемо од групе Млади лавови. Дрес школе није обавезан први дан.</p>
           </details>
           <details>
-            <summary>Где тачно тренирате?</summary>
-            <p>У Београду, на школском терену. Адресу шаљемо после поруке на Вајбер — тако држимо групе малим и избегавамо гужву на терминима.</p>
+            <summary data-i18n="faq3Q">Где тачно тренирате?</summary>
+            <p data-i18n="faq3A">У Београду, на школском терену. Адресу шаљемо после поруке на Вајбер — тако држимо групе малим и избегавамо гужву на терминима.</p>
           </details>
           <details>
-            <summary>Како се плаћа?</summary>
-            <p>Месечно, у динарима, после пробног тренинга. Ако дете прескочи термин због болести, надокнада се договара у истој недељи.</p>
+            <summary data-i18n="faq4Q">Како се плаћа?</summary>
+            <p data-i18n="faq4A">Месечно, у динарима, после пробног тренинга. Ако дете прескочи термин због болести, надокнада се договара у истој недељи.</p>
           </details>
         </div>
       </section>
@@ -912,17 +956,17 @@
         <div class="wrap camp">
           <div>
             <div class="section-head">
-              <p class="kicker">07 · Наш камп</p>
-              <h2>Летњи камп Leopold</h2>
-              <p class="lede">
+              <p class="kicker" data-i18n="campKicker">07 · Наш камп</p>
+              <h2 data-i18n="campTitle">Летњи камп Leopold</h2>
+              <p class="lede" data-i18n="campLede">
                 Седам дана фудбала, игре и реда. Јутро на терену, поподне радионице и мали турнир.
                 Камп је за узраст 7–14 година. Цена кампа: 19.900 РСД, са ужином и мајицом школе.
               </p>
             </div>
-            <a class="btn btn-gold" href="viber://chat?number=%2B381652125150">Резервишите место</a>
+            <a class="btn btn-gold" href="viber://chat?number=%2B381652125150" data-i18n="campCta">Резервишите место</a>
           </div>
           <div class="camp-photo">
-            <img src="assets/leopold-camp.jpg" alt="Летњи фудбалски камп Leopold">
+            <img src="assets/leopold-camp.jpg" alt="" data-i18n-alt="campAlt">
           </div>
         </div>
       </section>
@@ -930,21 +974,21 @@
       <section id="kontakt">
         <div class="wrap">
           <div class="section-head">
-            <p class="kicker">08 · Контакт</p>
-            <h2>Пишите данас, тренинг ове недеље</h2>
+            <p class="kicker" data-i18n="ctKicker">08 · Контакт</p>
+            <h2 data-i18n="ctTitle">Пишите данас, тренинг ове недеље</h2>
           </div>
           <div class="contact-grid">
             <div class="card contact-box">
-              <h3>Телефон и Вајбер</h3>
+              <h3 data-i18n="ctPhone">Телефон и Вајбер</h3>
               <p><a href="tel:+381652125150">+381 65 2125 150</a></p>
-              <p><a href="viber://chat?number=%2B381652125150">Отвори ћаскање на Вајберу</a></p>
-              <p class="notice">Напишите име детета, узраст и који термин вам одговара. Одговарамо истог дана.</p>
+              <p><a href="viber://chat?number=%2B381652125150" data-i18n="ctViber">Отвори ћаскање на Вајберу</a></p>
+              <p class="notice" data-i18n="ctNotice">Напишите име детета, узраст и који термин вам одговара. Одговарамо истог дана.</p>
             </div>
             <div class="card contact-box">
-              <h3>Београд</h3>
-              <p>Фудбалска школа Leopold · Србија</p>
-              <p>Тренинзи поподне, мале групе, српски језик на терену.</p>
-              <p>Грб школе носите на дресу — и у поруци кад нам се јавите.</p>
+              <h3 data-i18n="brandCity">Београд</h3>
+              <p data-i18n="ctSchool">Фудбалска школа Leopold · Србија</p>
+              <p data-i18n="ctTrain">Тренинзи поподне, мале групе, српски језик на терену.</p>
+              <p data-i18n="ctCrest">Грб школе носите на дресу — и у поруци кад нам се јавите.</p>
             </div>
           </div>
         </div>
@@ -954,24 +998,411 @@
     <footer>
       <div class="wrap footer-row">
         <div class="footer-brand">
-          <img src="assets/leopold-crest.jpg" alt="Грб Leopold">
-          <span>Фудбалска школа Leopold · Београд</span>
+          <img src="assets/leopold-crest.jpg" alt="" data-i18n-alt="crestAlt">
+          <span data-i18n="footerBrand">Фудбалска школа Leopold · Београд</span>
         </div>
-        <span>© 2026 Leopold. Сва права задржана.</span>
+        <span data-i18n="footerCopy">© 2026 Leopold. Сва права задржана.</span>
       </div>
     </footer>
 
-    <div class="mobile-cta" aria-label="Брзи контакт">
-      <a class="btn btn-ghost" href="tel:+381652125150">Позови</a>
-      <a class="btn btn-gold" href="viber://chat?number=%2B381652125150">Вајбер</a>
+    <div class="mobile-cta" data-i18n-aria="quickContact">
+      <a class="btn btn-ghost" href="tel:+381652125150" data-i18n="call">Позови</a>
+      <a class="btn btn-gold" href="viber://chat?number=%2B381652125150" data-i18n="viber">Вајбер</a>
     </div>
     <script>
+      const I18N = {
+        cyr: {
+          lang: "sr-Cyrl",
+          title: "Фудбалски тренинг центар Leopold у Београду",
+          desc: "Фудбалски тренинг центар Leopold у Београду. Тренинзи за децу од 4 до 16 година, бесплатан пробни термин, летњи камп и рад са лиценцираним тренерима.",
+          skip: "Пређи на садржај",
+          brandAria: "Фудбалски тренинг центар Леополд, Београд",
+          crestAlt: "Грб тренинг центра Леополд",
+          brandTop: "Фудбалски тренинг центар",
+          brandTitle: "Леополд",
+          brandCity: "Београд",
+          navAria: "Главни мени",
+          navAbout: "О нама",
+          navPrograms: "Програми",
+          navPrices: "Цене",
+          navSchedule: "Распоред",
+          navCoaches: "Тренери",
+          navFaq: "Питања",
+          navCamp: "Камп",
+          navContact: "Контакт",
+          navCta: "Вајбер упис",
+          menuOpen: "Отвори мени",
+          eyebrow: "Београд · Србија",
+          heroTitle: "Игра.<br>Карактер.<br>Leopold.",
+          heroText: "Дечја фудбалска школа за узраст од 4 до 16 година. Учимо технику, темпо и поштовање — без вике, без хаоса, са јасним планом за сваку групу.",
+          heroCta: "Бесплатан пробни тренинг",
+          heroSchedule: "Погледај распоред",
+          statAge: "година, мале групе",
+          statWeek: "тренинга недељно",
+          statTrial: "пробни термин",
+          aboutKicker: "01 · О нама",
+          aboutTitle: "Академија која гради лавове, не само стрелце",
+          aboutLede: "Leopold је београдска школа фудбала названа по лаву: храброст на лопти, мир у одлуци, понос у дресу. Радимо са децом која први пут шутирају — и са онима који већ траже клубски ритам.",
+          value1Title: "Мале групе",
+          value1Text: "До 12 деце на тренеру. Свако додирне лопту, свако чује инструкцију.",
+          value2Title: "Лиценцирани штаб",
+          value2Text: "Тренинзи по узрасту: моторика, техника, игра 1 на 1 и мали терени.",
+          value3Title: "Безбедно окружење",
+          value3Text: "Родитељи добијају јасан распоред, правила и контакт тренера од првог дана.",
+          trainingAlt: "Тренинг реквизити на терену школе Leopold",
+          photoBadge: "Leopold · Београд",
+          progKicker: "02 · Програми обуке",
+          progTitle: "Четири групе, један стандард",
+          progLede: "Програм прати узраст. Нико не ради вежбе старијих „јер је тата рекао да је спреман“.",
+          g1Age: "4–6 година",
+          g1Title: "Лавићи",
+          g1Text: "Игра, координација, први додир лопте. Тренинг до 60 минута, кроз станице и игре.",
+          g2Age: "7–9 година",
+          g2Title: "Млади лавови",
+          g2Text: "Вођење, додавање, шутирање. Уводимо мини утакмице и основне позиције.",
+          g3Age: "10–12 година",
+          g3Title: "Кадети",
+          g3Text: "Тактика малог терена, прелазак из одбране у напад, рад са обе ноге.",
+          g4Age: "13–16 година",
+          g4Title: "Јуниори",
+          g4Text: "Интензитет, кондиција и клубски ритам. Припрема за такмичење и пробе.",
+          priceKicker: "03 · Цене",
+          priceTitle: "Јасно, без ситних слова",
+          priceLede: "Први тренинг је бесплатан. Месечна карта важи од дана уплате. Опрема школе није обавезна за пробни термин.",
+          p1Title: "Пробни",
+          p1Text: "Један тренинг у правој групи. Дођите у патикама и удобној одећи.",
+          p2Title: "Месечно",
+          p2Text: "Два тренинга недељно, план за месец и повратна информација родитељима.",
+          p3Title: "Интензив",
+          p3Text: "Три тренинга недељно за кадете и јуниоре. Приоритет на утакмицама школе.",
+          rsd: "РСД",
+          ribbon: "НАЈЧЕШЋЕ",
+          schKicker: "04 · Распоред",
+          schTitle: "Када тренирамо",
+          schLede: "Термини су у Београду, поподне. Тачна адреса терена стиже на Вајбер после пријаве — да група остане мала.",
+          thGroup: "Група",
+          thAge: "Узраст",
+          thDays: "Дани",
+          thTime: "Време",
+          d1: "уторак и четвртак",
+          d2: "понедељак и среда",
+          d3: "понедељак, среда, петак",
+          d4: "уторак, четвртак, субота",
+          coKicker: "05 · Тренери",
+          coTitle: "Штаб који држи ниво",
+          coLede: "Исти грб, иста методологија. Тренери раде заједно, не као три одвојене школе у једној хали.",
+          c1Name: "Никола Јовановић",
+          c1Text: "Главни тренер. УЕФА Б, рад са кадетима и јуниорима, акценат на темпу и одлукама.",
+          c2Name: "Марко Петровић",
+          c2Text: "Тренер млађих група. Моторика, игра и навика да се лопта чува, не само шутира.",
+          c3Name: "Ана Стојановић",
+          c3Text: "Технички тренер. Рад са обе ноге, први додир и прелазак на утакмични ритам.",
+          faqKicker: "06 · Честа питања",
+          faqTitle: "Пре него што напишете",
+          faq1Q: "Да ли дете мора да има искуство?",
+          faq1A: "Не. Лавићи крећу од нуле. Старије групе процењујемо на пробном тренингу и предлажемо ниво без притиска.",
+          faq2Q: "Шта понети на први тренинг?",
+          faq2A: "Патике, тренерка, флаша воде. Штитнике препоручујемо од групе Млади лавови. Дрес школе није обавезан први дан.",
+          faq3Q: "Где тачно тренирате?",
+          faq3A: "У Београду, на школском терену. Адресу шаљемо после поруке на Вајбер — тако држимо групе малим и избегавамо гужву на терминима.",
+          faq4Q: "Како се плаћа?",
+          faq4A: "Месечно, у динарима, после пробног тренинга. Ако дете прескочи термин због болести, надокнада се договара у истој недељи.",
+          campKicker: "07 · Наш камп",
+          campTitle: "Летњи камп Leopold",
+          campLede: "Седам дана фудбала, игре и реда. Јутро на терену, поподне радионице и мали турнир. Камп је за узраст 7–14 година. Цена кампа: 19.900 РСД, са ужином и мајицом школе.",
+          campCta: "Резервишите место",
+          campAlt: "Летњи фудбалски камп Leopold",
+          ctKicker: "08 · Контакт",
+          ctTitle: "Пишите данас, тренинг ове недеље",
+          ctPhone: "Телефон и Вајбер",
+          ctViber: "Отвори ћаскање на Вајберу",
+          ctNotice: "Напишите име детета, узраст и који термин вам одговара. Одговарамо истог дана.",
+          ctSchool: "Фудбалска школа Leopold · Србија",
+          ctTrain: "Тренинзи поподне, мале групе, српски језик на терену.",
+          ctCrest: "Грб школе носите на дресу — и у поруци кад нам се јавите.",
+          footerBrand: "Фудбалска школа Leopold · Београд",
+          footerCopy: "© 2026 Leopold. Сва права задржана.",
+          quickContact: "Брзи контакт",
+          call: "Позови",
+          viber: "Вајбер"
+        },
+        lat: {
+          lang: "sr-Latn",
+          title: "Fudbalski trening centar Leopold u Beogradu",
+          desc: "Fudbalski trening centar Leopold u Beogradu. Treninzi za decu od 4 do 16 godina, besplatan probni termin, letnji kamp i rad sa licenciranim trenerima.",
+          skip: "Pređi na sadržaj",
+          brandAria: "Fudbalski trening centar Leopold, Beograd",
+          crestAlt: "Grb trening centra Leopold",
+          brandTop: "Fudbalski trening centar",
+          brandTitle: "Leopold",
+          brandCity: "Beograd",
+          navAria: "Glavni meni",
+          navAbout: "O nama",
+          navPrograms: "Programi",
+          navPrices: "Cene",
+          navSchedule: "Raspored",
+          navCoaches: "Treneri",
+          navFaq: "Pitanja",
+          navCamp: "Kamp",
+          navContact: "Kontakt",
+          navCta: "Viber upis",
+          menuOpen: "Otvori meni",
+          eyebrow: "Beograd · Srbija",
+          heroTitle: "Igra.<br>Karakter.<br>Leopold.",
+          heroText: "Dečja fudbalska škola za uzrast od 4 do 16 godina. Učimo tehniku, tempo i poštovanje — bez vike, bez haosa, sa jasnim planom za svaku grupu.",
+          heroCta: "Besplatan probni trening",
+          heroSchedule: "Pogledaj raspored",
+          statAge: "godina, male grupe",
+          statWeek: "treninga nedeljno",
+          statTrial: "probni termin",
+          aboutKicker: "01 · O nama",
+          aboutTitle: "Akademija koja gradi lavove, ne samo strelce",
+          aboutLede: "Leopold je beogradska škola fudbala nazvana po lavu: hrabrost na lopti, mir u odluci, ponos u dresu. Radimo sa decom koja prvi put šutiraju — i sa onima koji već traže klubski ritam.",
+          value1Title: "Male grupe",
+          value1Text: "Do 12 dece na treneru. Svako dodirne loptu, svako čuje instrukciju.",
+          value2Title: "Licencirani štab",
+          value2Text: "Treninzi po uzrastu: motorika, tehnika, igra 1 na 1 i mali tereni.",
+          value3Title: "Bezbedno okruženje",
+          value3Text: "Roditelji dobijaju jasan raspored, pravila i kontakt trenera od prvog dana.",
+          trainingAlt: "Trening rekviziti na terenu škole Leopold",
+          photoBadge: "Leopold · Beograd",
+          progKicker: "02 · Programi obuke",
+          progTitle: "Četiri grupe, jedan standard",
+          progLede: "Program prati uzrast. Niko ne radi vežbe starijih „jer je tata rekao da je spreman“.",
+          g1Age: "4–6 godina",
+          g1Title: "Lavići",
+          g1Text: "Igra, koordinacija, prvi dodir lopte. Trening do 60 minuta, kroz stanice i igre.",
+          g2Age: "7–9 godina",
+          g2Title: "Mladi lavovi",
+          g2Text: "Vođenje, dodavanje, šutiranje. Uvodimo mini utakmice i osnovne pozicije.",
+          g3Age: "10–12 godina",
+          g3Title: "Kadeti",
+          g3Text: "Taktika malog terena, prelazak iz odbrane u napad, rad sa obe noge.",
+          g4Age: "13–16 godina",
+          g4Title: "Juniori",
+          g4Text: "Intenzitet, kondicija i klubski ritam. Priprema za takmičenje i probe.",
+          priceKicker: "03 · Cene",
+          priceTitle: "Jasno, bez sitnih slova",
+          priceLede: "Prvi trening je besplatan. Mesečna karta važi od dana uplate. Oprema škole nije obavezna za probni termin.",
+          p1Title: "Probni",
+          p1Text: "Jedan trening u pravoj grupi. Dođite u patikama i udobnoj odeći.",
+          p2Title: "Mesečno",
+          p2Text: "Dva treninga nedeljno, plan za mesec i povratna informacija roditeljima.",
+          p3Title: "Intenziv",
+          p3Text: "Tri treninga nedeljno za kadete i juniori. Prioritet na utakmicama škole.",
+          rsd: "RSD",
+          ribbon: "NAJČEŠĆE",
+          schKicker: "04 · Raspored",
+          schTitle: "Kada treniramo",
+          schLede: "Termini su u Beogradu, popodne. Tačna adresa terena stiže na Viber posle prijave — da grupa ostane mala.",
+          thGroup: "Grupa",
+          thAge: "Uzrast",
+          thDays: "Dani",
+          thTime: "Vreme",
+          d1: "utorak i četvrtak",
+          d2: "ponedeljak i sreda",
+          d3: "ponedeljak, sreda, petak",
+          d4: "utorak, četvrtak, subota",
+          coKicker: "05 · Treneri",
+          coTitle: "Štab koji drži nivo",
+          coLede: "Isti grb, ista metodologija. Treneri rade zajedno, ne kao tri odvojene škole u jednoj hali.",
+          c1Name: "Nikola Jovanović",
+          c1Text: "Glavni trener. UEFA B, rad sa kadetima i juniorima, akcenat na tempu i odlukama.",
+          c2Name: "Marko Petrović",
+          c2Text: "Trener mlađih grupa. Motorika, igra i navika da se lopta čuva, ne samo šutira.",
+          c3Name: "Ana Stojanović",
+          c3Text: "Tehnički trener. Rad sa obe noge, prvi dodir i prelazak na utakmični ritam.",
+          faqKicker: "06 · Česta pitanja",
+          faqTitle: "Pre nego što napišete",
+          faq1Q: "Da li dete mora da ima iskustvo?",
+          faq1A: "Ne. Lavići kreću od nule. Starije grupe procenjujemo na probnom treningu i predlažemo nivo bez pritiska.",
+          faq2Q: "Šta poneti na prvi trening?",
+          faq2A: "Patike, trenerka, flaša vode. Štitnike preporučujemo od grupe Mladi lavovi. Dres škole nije obavezan prvi dan.",
+          faq3Q: "Gde tačno trenirate?",
+          faq3A: "U Beogradu, na školskom terenu. Adresu šaljemo posle poruke na Viber — tako držimo grupe malim i izbegavamo gužvu na terminima.",
+          faq4Q: "Kako se plaća?",
+          faq4A: "Mesečno, u dinarima, posle probnog treninga. Ako dete preskoči termin zbog bolesti, nadoknada se dogovara u istoj nedelji.",
+          campKicker: "07 · Naš kamp",
+          campTitle: "Letnji kamp Leopold",
+          campLede: "Sedam dana fudbala, igre i reda. Jutro na terenu, popodne radionice i mali turnir. Kamp je za uzrast 7–14 godina. Cena kampa: 19.900 RSD, sa užinom i majicom škole.",
+          campCta: "Rezervišite mesto",
+          campAlt: "Letnji fudbalski kamp Leopold",
+          ctKicker: "08 · Kontakt",
+          ctTitle: "Pišite danas, trening ove nedelje",
+          ctPhone: "Telefon i Viber",
+          ctViber: "Otvori ćaskanje na Viberu",
+          ctNotice: "Napišite ime deteta, uzrast i koji termin vam odgovara. Odgovaramo istog dana.",
+          ctSchool: "Fudbalska škola Leopold · Srbija",
+          ctTrain: "Treninzi popodne, male grupe, srpski jezik na terenu.",
+          ctCrest: "Grb škole nosite na dresu — i u poruci kad nam se javite.",
+          footerBrand: "Fudbalska škola Leopold · Beograd",
+          footerCopy: "© 2026 Leopold. Sva prava zadržana.",
+          quickContact: "Brzi kontakt",
+          call: "Pozovi",
+          viber: "Viber"
+        },
+        en: {
+          lang: "en",
+          title: "Leopold Football Training Centre in Belgrade",
+          desc: "Leopold Football Training Centre in Belgrade. Training for kids aged 4 to 16, a free trial session, a summer camp, and licensed coaches.",
+          skip: "Skip to content",
+          brandAria: "Leopold Football Training Centre, Belgrade",
+          crestAlt: "Leopold training centre crest",
+          brandTop: "Football training centre",
+          brandTitle: "Leopold",
+          brandCity: "Belgrade",
+          navAria: "Main menu",
+          navAbout: "About",
+          navPrograms: "Programs",
+          navPrices: "Prices",
+          navSchedule: "Schedule",
+          navCoaches: "Coaches",
+          navFaq: "FAQ",
+          navCamp: "Camp",
+          navContact: "Contact",
+          navCta: "Join on Viber",
+          menuOpen: "Open menu",
+          eyebrow: "Belgrade · Serbia",
+          heroTitle: "Play.<br>Character.<br>Leopold.",
+          heroText: "A children’s football school for ages 4 to 16. We teach technique, tempo and respect — no shouting, no chaos, with a clear plan for every group.",
+          heroCta: "Book a free trial",
+          heroSchedule: "See the schedule",
+          statAge: "years, small groups",
+          statWeek: "sessions a week",
+          statTrial: "trial session",
+          aboutKicker: "01 · About us",
+          aboutTitle: "An academy that builds lions, not just strikers",
+          aboutLede: "Leopold is a Belgrade football school named after the lion: courage on the ball, calm in the decision, pride in the shirt. We work with kids taking their first shot — and with those already looking for a club rhythm.",
+          value1Title: "Small groups",
+          value1Text: "Up to 12 children per coach. Everyone touches the ball. Everyone hears the instruction.",
+          value2Title: "Licensed staff",
+          value2Text: "Age-based sessions: motor skills, technique, 1v1 play and small-sided games.",
+          value3Title: "A safe setting",
+          value3Text: "Parents get a clear timetable, house rules and a coach contact from day one.",
+          trainingAlt: "Training equipment on the Leopold pitch",
+          photoBadge: "Leopold · Belgrade",
+          progKicker: "02 · Training programs",
+          progTitle: "Four groups, one standard",
+          progLede: "The program follows age. Nobody does older drills “because dad said they were ready”.",
+          g1Age: "Ages 4–6",
+          g1Title: "Cubs",
+          g1Text: "Play, coordination, first touch. Sessions up to 60 minutes, through stations and games.",
+          g2Age: "Ages 7–9",
+          g2Title: "Young lions",
+          g2Text: "Dribbling, passing, shooting. We add mini matches and basic positions.",
+          g3Age: "Ages 10–12",
+          g3Title: "Cadets",
+          g3Text: "Small-pitch tactics, moving from defence to attack, work with both feet.",
+          g4Age: "Ages 13–16",
+          g4Title: "Juniors",
+          g4Text: "Intensity, fitness and a club tempo. Preparation for matches and trials.",
+          priceKicker: "03 · Prices",
+          priceTitle: "Clear, no fine print",
+          priceLede: "The first session is free. A monthly pass starts on the day of payment. Club kit is not required for the trial.",
+          p1Title: "Trial",
+          p1Text: "One session in the right group. Come in trainers and comfortable clothes.",
+          p2Title: "Monthly",
+          p2Text: "Two sessions a week, a monthly plan and feedback for parents.",
+          p3Title: "Intensive",
+          p3Text: "Three sessions a week for cadets and juniors. Priority in school matches.",
+          rsd: "RSD",
+          ribbon: "MOST POPULAR",
+          schKicker: "04 · Schedule",
+          schTitle: "When we train",
+          schLede: "Sessions are in Belgrade, in the afternoon. The exact pitch address is sent on Viber after you sign up — so groups stay small.",
+          thGroup: "Group",
+          thAge: "Age",
+          thDays: "Days",
+          thTime: "Time",
+          d1: "Tuesday and Thursday",
+          d2: "Monday and Wednesday",
+          d3: "Monday, Wednesday, Friday",
+          d4: "Tuesday, Thursday, Saturday",
+          coKicker: "05 · Coaches",
+          coTitle: "A staff that holds the standard",
+          coLede: "Same crest, same method. Coaches work together, not as three separate schools in one hall.",
+          c1Name: "Nikola Jovanović",
+          c1Text: "Head coach. UEFA B, work with cadets and juniors, focus on tempo and decisions.",
+          c2Name: "Marko Petrović",
+          c2Text: "Younger groups. Motor skills, play, and the habit of keeping the ball, not just shooting it.",
+          c3Name: "Ana Stojanović",
+          c3Text: "Technical coach. Both feet, first touch, and the step up to match rhythm.",
+          faqKicker: "06 · FAQ",
+          faqTitle: "Before you write",
+          faq1Q: "Does my child need experience?",
+          faq1A: "No. Cubs start from zero. Older groups are assessed in the trial session and we suggest a level without pressure.",
+          faq2Q: "What should we bring to the first session?",
+          faq2A: "Trainers, a tracksuit, a water bottle. Shin pads from the Young lions group. The club shirt is not required on day one.",
+          faq3Q: "Where exactly do you train?",
+          faq3A: "In Belgrade, on a school pitch. We send the address after a Viber message — that keeps groups small and avoids crowding.",
+          faq4Q: "How do we pay?",
+          faq4A: "Monthly, in dinars, after the trial. If a child misses a session due to illness, a make-up is arranged in the same week.",
+          campKicker: "07 · Our camp",
+          campTitle: "Leopold summer camp",
+          campLede: "Seven days of football, play and structure. Mornings on the pitch, afternoons with workshops and a mini tournament. Ages 7–14. Camp fee: 19,900 RSD, with a snack and a club shirt.",
+          campCta: "Reserve a place",
+          campAlt: "Leopold summer football camp",
+          ctKicker: "08 · Contact",
+          ctTitle: "Write today, train this week",
+          ctPhone: "Phone and Viber",
+          ctViber: "Open a Viber chat",
+          ctNotice: "Send the child’s name, age and a preferred slot. We reply the same day.",
+          ctSchool: "Leopold football school · Serbia",
+          ctTrain: "Afternoon sessions, small groups, Serbian on the pitch.",
+          ctCrest: "Wear the crest on the shirt — and in the message when you write to us.",
+          footerBrand: "Leopold football school · Belgrade",
+          footerCopy: "© 2026 Leopold. All rights reserved.",
+          quickContact: "Quick contact",
+          call: "Call",
+          viber: "Viber"
+        }
+      };
+
+      const LANGS = { cyr: "sr-Cyrl", lat: "sr-Latn", en: "en" };
+
+      function applyLang(code) {
+        const pack = I18N[code] || I18N.cyr;
+        document.documentElement.lang = pack.lang;
+        document.title = pack.title;
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", pack.desc);
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (pack[key] != null) el.textContent = pack[key];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-html");
+          if (pack[key] != null) el.innerHTML = pack[key];
+        });
+        document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-aria");
+          if (pack[key] != null) el.setAttribute("aria-label", pack[key]);
+        });
+        document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-alt");
+          if (pack[key] != null) el.setAttribute("alt", pack[key]);
+        });
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("is-active", btn.getAttribute("data-lang") === code);
+        });
+        try { localStorage.setItem("leopold-lang", code); } catch (e) {}
+      }
+
       document.querySelectorAll(".site-nav a").forEach((link) => {
         link.addEventListener("click", () => {
           const toggle = document.getElementById("nav-toggle");
           if (toggle) toggle.checked = false;
         });
       });
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+      let start = "cyr";
+      try {
+        const saved = localStorage.getItem("leopold-lang");
+        if (saved && I18N[saved]) start = saved;
+      } catch (e) {}
+      applyLang(start);
     </script>
     <script type="application/ld+json">
       {
