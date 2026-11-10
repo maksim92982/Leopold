@@ -691,10 +691,13 @@
       #o-nama, #programi, #kamp { position: relative; overflow: hidden; }
       .ball {
         position: absolute;
-        width: 76px;
-        height: 76px;
-        opacity: 0.2;
-        filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
+        display: grid;
+        place-items: center;
+        font-size: 56px;
+        line-height: 1;
+        opacity: 0.42;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.28));
+        user-select: none;
       }
       .fx-tag {
         position: absolute;
@@ -733,7 +736,7 @@
         transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
       .fx-reveal.is-in .ball {
-        opacity: 0.2;
+        opacity: 0.42;
         transform: none;
         animation: ball-float 8s ease-in-out infinite;
       }
@@ -748,14 +751,6 @@
     </style>
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute">
-      <symbol id="soccer" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="30" fill="#f4f8fc"/>
-        <circle cx="32" cy="32" r="30" fill="none" stroke="#102418" stroke-width="2.5"/>
-        <path fill="#141414" d="M32 16.5 41 23l-3.5 10.5h-11L22.5 23z"/>
-        <path fill="none" stroke="#141414" stroke-linejoin="round" stroke-width="2" d="m32 16.5-9.5 6.5-8-3.2 4.2-11.2 13.3 1.2Zm9.5 6.5 8-3.2-4.2-11.2L32 16.5m5.5 17 7.8 6.2 9.2-5.4-2.2-12.4-9.3-2.1M22.5 33.5l-7.8 6.2-9.2-5.4 2.2-12.4 9.3-2.1M27.5 33.5 21 47.2 32 54l11-6.8-6.5-13.7"/>
-      </symbol>
-    </svg>
     <a class="skip" href="#sadrzaj" data-i18n="skip">Пређи на садржај</a>
     <header class="site-header">
       <div class="header-bar">
@@ -800,10 +795,10 @@
           <img src="assets/leopold-hero.jpg" alt="">
         </div>
         <div class="fx-layer fx-float" data-fx="float" aria-hidden="true">
-          <svg class="ball" style="left:6%;top:18%;width:92px;height:92px"><use href="#soccer"/></svg>
-          <svg class="ball" style="right:10%;top:28%;width:58px;height:58px;opacity:.16"><use href="#soccer"/></svg>
-          <svg class="ball" style="left:18%;bottom:12%;width:44px;height:44px;opacity:.18"><use href="#soccer"/></svg>
-          <svg class="ball" style="right:22%;bottom:22%;width:70px;height:70px"><use href="#soccer"/></svg>
+          <span class="ball" style="left:6%;top:18%;font-size:92px">⚽</span>
+          <span class="ball" style="right:10%;top:28%;font-size:58px;opacity:.28">🏆</span>
+          <span class="ball" style="left:18%;bottom:12%;font-size:44px;opacity:.32">🥇</span>
+          <span class="ball" style="right:22%;bottom:22%;font-size:70px">📣</span>
           <span class="fx-tag">A · CSS float</span>
         </div>
         <div class="wrap hero-copy">
@@ -827,9 +822,9 @@
 
       <section id="o-nama">
         <div class="fx-layer fx-parallax" data-fx="parallax" aria-hidden="true">
-          <svg class="ball" data-speed="-0.18" style="left:4%;top:8%;width:96px;height:96px"><use href="#soccer"/></svg>
-          <svg class="ball" data-speed="0.12" style="right:6%;top:30%;width:64px;height:64px;opacity:.16"><use href="#soccer"/></svg>
-          <svg class="ball" data-speed="0.28" style="left:12%;bottom:6%;width:50px;height:50px;opacity:.18"><use href="#soccer"/></svg>
+          <span class="ball" data-speed="-0.18" style="left:4%;top:8%;font-size:96px">🟠</span>
+          <span class="ball" data-speed="0.12" style="right:6%;top:30%;font-size:64px;opacity:.3">🏅</span>
+          <span class="ball" data-speed="0.28" style="left:12%;bottom:6%;font-size:50px;opacity:.34">⚽</span>
           <span class="fx-tag">B · scroll parallax</span>
         </div>
         <div class="wrap split">
@@ -879,9 +874,9 @@
 
       <section id="programi">
         <div class="fx-layer fx-reveal" data-fx="reveal" aria-hidden="true">
-          <svg class="ball" style="left:3%;top:12%;width:84px;height:84px"><use href="#soccer"/></svg>
-          <svg class="ball" style="right:8%;top:8%;width:52px;height:52px"><use href="#soccer"/></svg>
-          <svg class="ball" style="right:18%;bottom:10%;width:72px;height:72px"><use href="#soccer"/></svg>
+          <span class="ball" style="left:3%;top:12%;font-size:84px">🏆</span>
+          <span class="ball" style="right:8%;top:8%;font-size:52px">🥇</span>
+          <span class="ball" style="right:18%;bottom:10%;font-size:72px">⚽</span>
           <span class="fx-tag">C · reveal</span>
         </div>
         <div class="wrap">
@@ -1045,9 +1040,9 @@
 
       <section id="kamp">
         <div class="fx-layer fx-drift" data-fx="drift" aria-hidden="true">
-          <svg class="ball" style="top:18%;width:70px;height:70px"><use href="#soccer"/></svg>
-          <svg class="ball" style="top:48%;width:44px;height:44px;opacity:.16"><use href="#soccer"/></svg>
-          <svg class="ball" style="top:72%;width:86px;height:86px"><use href="#soccer"/></svg>
+          <span class="ball" style="top:18%;font-size:70px">🏅</span>
+          <span class="ball" style="top:48%;font-size:44px;opacity:.3">📣</span>
+          <span class="ball" style="top:72%;font-size:86px">🟠</span>
           <span class="fx-tag">D · drift</span>
         </div>
         <div class="wrap camp">
