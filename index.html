@@ -218,6 +218,7 @@
         border-color: transparent;
         color: #fff;
       }
+      .nav-langs { display: none; }
 
       .header-cta {
         display: inline-flex;
@@ -670,13 +671,22 @@
         .header-cta { display: none; }
         .mobile-cta { display: grid; }
         body { padding-bottom: calc(84px + var(--safe-b)); }
-        section { padding: 64px 0; scroll-margin-top: 128px; }
+        section { padding: 64px 0; scroll-margin-top: 96px; }
         .header-bar { min-height: 76px; }
         .brand img { width: 44px; height: 44px; }
         .brand-name .brand-top,
         .brand-name .brand-city { font-size: 8px; letter-spacing: 0.08em; }
         .brand-name .brand-title { font-size: 14px; letter-spacing: 0.22em; }
+        .lang-bar { display: none; }
         .lang-btn { min-width: 40px; padding: 0 8px; font-size: 11px; min-height: 34px; }
+        .nav-toggle:checked ~ .header-actions .nav-langs {
+          display: flex;
+          justify-content: flex-end;
+          gap: 8px;
+          margin-top: 8px;
+          padding-top: 14px;
+          border-top: 1px solid var(--line);
+        }
       }
 
       .fx-layer {
@@ -693,27 +703,11 @@
         position: absolute;
         display: grid;
         place-items: center;
-        font-size: 56px;
+        font-size: 280px;
         line-height: 1;
-        opacity: 0.42;
+        opacity: 0.28;
         filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.28));
         user-select: none;
-      }
-      .fx-tag {
-        position: absolute;
-        top: 14px;
-        right: 16px;
-        z-index: 2;
-        padding: 5px 10px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(7, 20, 13, 0.72);
-        color: var(--gold);
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        pointer-events: none;
       }
       @keyframes ball-float {
         0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
@@ -736,7 +730,7 @@
         transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
       .fx-reveal.is-in .ball {
-        opacity: 0.42;
+        opacity: 0.28;
         transform: none;
         animation: ball-float 8s ease-in-out infinite;
       }
@@ -773,6 +767,11 @@
             <a href="#pitanja" data-i18n="navFaq">Питања</a>
             <a href="#kamp" data-i18n="navCamp">Камп</a>
             <a href="#kontakt" data-i18n="navContact">Контакт</a>
+            <div class="nav-langs" role="group" aria-label="Language">
+              <button type="button" class="lang-btn is-active" data-lang="cyr" aria-label="Ћирилица">ЋИ</button>
+              <button type="button" class="lang-btn" data-lang="lat" aria-label="Latinica">LA</button>
+              <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+            </div>
           </nav>
           <a class="header-cta" href="viber://chat?number=%2B381652125150" data-i18n="navCta">Вајбер упис</a>
         </div>
@@ -795,11 +794,10 @@
           <img src="assets/leopold-hero.jpg" alt="">
         </div>
         <div class="fx-layer fx-float" data-fx="float" aria-hidden="true">
-          <span class="ball" style="left:6%;top:18%;font-size:92px">⚽</span>
-          <span class="ball" style="right:10%;top:28%;font-size:58px;opacity:.28">🏆</span>
-          <span class="ball" style="left:18%;bottom:12%;font-size:44px;opacity:.32">🥇</span>
-          <span class="ball" style="right:22%;bottom:22%;font-size:70px">📣</span>
-          <span class="fx-tag">A · CSS float</span>
+          <span class="ball" style="left:-8%;top:-4%;font-size:460px">⚽</span>
+          <span class="ball" style="right:-6%;top:8%;font-size:290px;opacity:.22">🏆</span>
+          <span class="ball" style="left:8%;bottom:-18%;font-size:220px;opacity:.24">🥇</span>
+          <span class="ball" style="right:12%;bottom:-10%;font-size:350px">🏅</span>
         </div>
         <div class="wrap hero-copy">
           <p class="eyebrow" data-i18n="eyebrow">Београд · Србија</p>
@@ -822,10 +820,9 @@
 
       <section id="o-nama">
         <div class="fx-layer fx-parallax" data-fx="parallax" aria-hidden="true">
-          <span class="ball" data-speed="-0.18" style="left:4%;top:8%;font-size:96px">🟠</span>
-          <span class="ball" data-speed="0.12" style="right:6%;top:30%;font-size:64px;opacity:.3">🏅</span>
-          <span class="ball" data-speed="0.28" style="left:12%;bottom:6%;font-size:50px;opacity:.34">⚽</span>
-          <span class="fx-tag">B · scroll parallax</span>
+          <span class="ball" data-speed="-0.18" style="left:-10%;top:-8%;font-size:480px">🏆</span>
+          <span class="ball" data-speed="0.12" style="right:-8%;top:12%;font-size:320px;opacity:.22">🏅</span>
+          <span class="ball" data-speed="0.28" style="left:6%;bottom:-16%;font-size:250px;opacity:.24">⚽</span>
         </div>
         <div class="wrap split">
           <div>
@@ -874,10 +871,9 @@
 
       <section id="programi">
         <div class="fx-layer fx-reveal" data-fx="reveal" aria-hidden="true">
-          <span class="ball" style="left:3%;top:12%;font-size:84px">🏆</span>
-          <span class="ball" style="right:8%;top:8%;font-size:52px">🥇</span>
-          <span class="ball" style="right:18%;bottom:10%;font-size:72px">⚽</span>
-          <span class="fx-tag">C · reveal</span>
+          <span class="ball" style="left:-8%;top:-6%;font-size:420px">🏆</span>
+          <span class="ball" style="right:-4%;top:-4%;font-size:260px">🥇</span>
+          <span class="ball" style="right:4%;bottom:-18%;font-size:360px">⚽</span>
         </div>
         <div class="wrap">
           <div class="section-head">
@@ -1040,10 +1036,9 @@
 
       <section id="kamp">
         <div class="fx-layer fx-drift" data-fx="drift" aria-hidden="true">
-          <span class="ball" style="top:18%;font-size:70px">🏅</span>
-          <span class="ball" style="top:48%;font-size:44px;opacity:.3">📣</span>
-          <span class="ball" style="top:72%;font-size:86px">🟠</span>
-          <span class="fx-tag">D · drift</span>
+          <span class="ball" style="top:4%;font-size:350px">🏅</span>
+          <span class="ball" style="top:32%;font-size:220px;opacity:.22">⚽</span>
+          <span class="ball" style="top:58%;font-size:430px">🏆</span>
         </div>
         <div class="wrap camp">
           <div>
