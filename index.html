@@ -703,9 +703,9 @@
         position: absolute;
         display: grid;
         place-items: center;
-        font-size: 280px;
+        font-size: 56px;
         line-height: 1;
-        opacity: 0.28;
+        opacity: 0.42;
         filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.28));
         user-select: none;
       }
@@ -718,24 +718,27 @@
         100% { transform: translate3d(130%, -48px, 0) rotate(420deg); }
       }
       .fx-float .ball { animation: ball-float 7s ease-in-out infinite; }
-      .fx-float .ball:nth-child(2) { animation-duration: 9.5s; animation-delay: -2s; }
-      .fx-float .ball:nth-child(3) { animation-duration: 6.2s; animation-delay: -4s; }
-      .fx-float .ball:nth-child(4) { animation-duration: 11s; animation-delay: -1s; }
+      .fx-float .ball:nth-child(5n+2) { animation-duration: 9.5s; animation-delay: -2s; }
+      .fx-float .ball:nth-child(5n+3) { animation-duration: 6.2s; animation-delay: -4s; }
+      .fx-float .ball:nth-child(5n+4) { animation-duration: 11s; animation-delay: -1s; }
+      .fx-float .ball:nth-child(5n+5) { animation-duration: 8.4s; animation-delay: -3s; }
       .fx-drift .ball { animation: ball-drift 16s linear infinite; }
-      .fx-drift .ball:nth-child(2) { animation-duration: 22s; animation-delay: -6s; }
-      .fx-drift .ball:nth-child(3) { animation-duration: 19s; animation-delay: -11s; }
+      .fx-drift .ball:nth-child(5n+2) { animation-duration: 22s; animation-delay: -6s; }
+      .fx-drift .ball:nth-child(5n+3) { animation-duration: 19s; animation-delay: -11s; }
+      .fx-drift .ball:nth-child(5n+4) { animation-duration: 14s; animation-delay: -4s; }
+      .fx-drift .ball:nth-child(5n+5) { animation-duration: 25s; animation-delay: -9s; }
       .fx-reveal .ball {
         opacity: 0;
         transform: translate3d(-40px, 50px, 0) scale(0.7);
         transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
       .fx-reveal.is-in .ball {
-        opacity: 0.28;
+        opacity: 0.42;
         transform: none;
         animation: ball-float 8s ease-in-out infinite;
       }
-      .fx-reveal.is-in .ball:nth-child(2) { animation-delay: 0.2s; }
-      .fx-reveal.is-in .ball:nth-child(3) { transition-delay: 0.15s; animation-delay: 0.4s; }
+      .fx-reveal.is-in .ball:nth-child(3n+2) { animation-delay: 0.2s; }
+      .fx-reveal.is-in .ball:nth-child(3n+3) { transition-delay: 0.12s; animation-delay: 0.4s; }
       .fx-parallax .ball { will-change: transform; }
 
       @media (prefers-reduced-motion: reduce) {
@@ -794,10 +797,26 @@
           <img src="assets/leopold-hero.jpg" alt="">
         </div>
         <div class="fx-layer fx-float" data-fx="float" aria-hidden="true">
-          <span class="ball" style="left:-8%;top:-4%;font-size:460px">⚽</span>
-          <span class="ball" style="right:-6%;top:8%;font-size:290px;opacity:.22">🏆</span>
-          <span class="ball" style="left:8%;bottom:-18%;font-size:220px;opacity:.24">🥇</span>
-          <span class="ball" style="right:12%;bottom:-10%;font-size:350px">🏅</span>
+          <span class="ball" style="left:6%;top:18%;font-size:92px">⚽</span>
+          <span class="ball" style="right:10%;top:28%;font-size:58px;opacity:.28">🏆</span>
+          <span class="ball" style="left:18%;bottom:12%;font-size:44px;opacity:.32">🥇</span>
+          <span class="ball" style="right:22%;bottom:22%;font-size:70px">🏅</span>
+          <span class="ball" style="left:38%;top:8%;font-size:52px">⚽</span>
+          <span class="ball" style="left:72%;top:12%;font-size:64px;opacity:.3">🥇</span>
+          <span class="ball" style="left:48%;top:36%;font-size:44px">🏆</span>
+          <span class="ball" style="left:86%;top:48%;font-size:84px">⚽</span>
+          <span class="ball" style="left:8%;top:52%;font-size:56px;opacity:.28">🏅</span>
+          <span class="ball" style="left:28%;top:62%;font-size:40px">⚽</span>
+          <span class="ball" style="left:58%;bottom:18%;font-size:72px">🥇</span>
+          <span class="ball" style="left:78%;bottom:8%;font-size:48px">🏆</span>
+          <span class="ball" style="left:42%;bottom:6%;font-size:60px;opacity:.3">🏅</span>
+          <span class="ball" style="left:2%;bottom:28%;font-size:50px">⚽</span>
+          <span class="ball" style="left:92%;bottom:32%;font-size:42px">🥇</span>
+          <span class="ball" style="left:64%;top:58%;font-size:54px">⚽</span>
+          <span class="ball" style="left:22%;top:8%;font-size:46px;opacity:.28">🏆</span>
+          <span class="ball" style="left:54%;top:16%;font-size:38px">🏅</span>
+          <span class="ball" style="left:34%;bottom:32%;font-size:66px">⚽</span>
+          <span class="ball" style="left:12%;top:34%;font-size:36px">🥇</span>
         </div>
         <div class="wrap hero-copy">
           <p class="eyebrow" data-i18n="eyebrow">Београд · Србија</p>
@@ -820,9 +839,21 @@
 
       <section id="o-nama">
         <div class="fx-layer fx-parallax" data-fx="parallax" aria-hidden="true">
-          <span class="ball" data-speed="-0.18" style="left:-10%;top:-8%;font-size:480px">🏆</span>
-          <span class="ball" data-speed="0.12" style="right:-8%;top:12%;font-size:320px;opacity:.22">🏅</span>
-          <span class="ball" data-speed="0.28" style="left:6%;bottom:-16%;font-size:250px;opacity:.24">⚽</span>
+          <span class="ball" data-speed="-0.18" style="left:4%;top:8%;font-size:96px">🏆</span>
+          <span class="ball" data-speed="0.12" style="right:6%;top:30%;font-size:64px;opacity:.3">🏅</span>
+          <span class="ball" data-speed="0.28" style="left:12%;bottom:6%;font-size:50px;opacity:.34">⚽</span>
+          <span class="ball" data-speed="-0.1" style="left:28%;top:18%;font-size:44px">🥇</span>
+          <span class="ball" data-speed="0.2" style="left:46%;top:6%;font-size:58px">⚽</span>
+          <span class="ball" data-speed="-0.24" style="left:62%;top:22%;font-size:40px">🏆</span>
+          <span class="ball" data-speed="0.16" style="left:78%;top:8%;font-size:72px">🥇</span>
+          <span class="ball" data-speed="0.08" style="left:88%;top:48%;font-size:48px">⚽</span>
+          <span class="ball" data-speed="-0.14" style="left:36%;top:48%;font-size:54px">🏅</span>
+          <span class="ball" data-speed="0.22" style="left:54%;bottom:12%;font-size:46px">⚽</span>
+          <span class="ball" data-speed="-0.2" style="left:70%;bottom:8%;font-size:60px">🏆</span>
+          <span class="ball" data-speed="0.11" style="left:22%;bottom:18%;font-size:38px">🥇</span>
+          <span class="ball" data-speed="0.26" style="left:8%;top:42%;font-size:52px">🏅</span>
+          <span class="ball" data-speed="-0.08" style="left:42%;bottom:4%;font-size:42px">⚽</span>
+          <span class="ball" data-speed="0.18" style="left:92%;bottom:22%;font-size:56px">🥇</span>
         </div>
         <div class="wrap split">
           <div>
@@ -871,9 +902,21 @@
 
       <section id="programi">
         <div class="fx-layer fx-reveal" data-fx="reveal" aria-hidden="true">
-          <span class="ball" style="left:-8%;top:-6%;font-size:420px">🏆</span>
-          <span class="ball" style="right:-4%;top:-4%;font-size:260px">🥇</span>
-          <span class="ball" style="right:4%;bottom:-18%;font-size:360px">⚽</span>
+          <span class="ball" style="left:3%;top:12%;font-size:84px">🏆</span>
+          <span class="ball" style="right:8%;top:8%;font-size:52px">🥇</span>
+          <span class="ball" style="right:18%;bottom:10%;font-size:72px">⚽</span>
+          <span class="ball" style="left:18%;top:6%;font-size:44px">🏅</span>
+          <span class="ball" style="left:32%;top:22%;font-size:58px">⚽</span>
+          <span class="ball" style="left:48%;top:4%;font-size:40px">🥇</span>
+          <span class="ball" style="left:64%;top:16%;font-size:66px">🏆</span>
+          <span class="ball" style="left:8%;top:48%;font-size:46px">⚽</span>
+          <span class="ball" style="left:26%;bottom:8%;font-size:54px">🏅</span>
+          <span class="ball" style="left:42%;bottom:16%;font-size:38px">🥇</span>
+          <span class="ball" style="left:58%;bottom:6%;font-size:60px">⚽</span>
+          <span class="ball" style="left:74%;bottom:22%;font-size:48px">🏆</span>
+          <span class="ball" style="left:88%;top:38%;font-size:42px">🏅</span>
+          <span class="ball" style="left:14%;bottom:28%;font-size:36px">⚽</span>
+          <span class="ball" style="left:80%;top:52%;font-size:70px">🥇</span>
         </div>
         <div class="wrap">
           <div class="section-head">
@@ -1036,9 +1079,21 @@
 
       <section id="kamp">
         <div class="fx-layer fx-drift" data-fx="drift" aria-hidden="true">
-          <span class="ball" style="top:4%;font-size:350px">🏅</span>
-          <span class="ball" style="top:32%;font-size:220px;opacity:.22">⚽</span>
-          <span class="ball" style="top:58%;font-size:430px">🏆</span>
+          <span class="ball" style="top:6%;font-size:70px">🏅</span>
+          <span class="ball" style="top:14%;font-size:44px;opacity:.3">⚽</span>
+          <span class="ball" style="top:22%;font-size:86px">🏆</span>
+          <span class="ball" style="top:30%;font-size:52px">🥇</span>
+          <span class="ball" style="top:38%;font-size:38px">⚽</span>
+          <span class="ball" style="top:46%;font-size:64px">🏅</span>
+          <span class="ball" style="top:54%;font-size:48px">🏆</span>
+          <span class="ball" style="top:62%;font-size:72px">⚽</span>
+          <span class="ball" style="top:70%;font-size:40px">🥇</span>
+          <span class="ball" style="top:78%;font-size:56px">🏅</span>
+          <span class="ball" style="top:10%;font-size:36px">⚽</span>
+          <span class="ball" style="top:26%;font-size:60px">🏆</span>
+          <span class="ball" style="top:42%;font-size:46px">🥇</span>
+          <span class="ball" style="top:58%;font-size:34px">⚽</span>
+          <span class="ball" style="top:84%;font-size:68px">🏆</span>
         </div>
         <div class="wrap camp">
           <div>
