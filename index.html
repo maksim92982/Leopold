@@ -199,16 +199,17 @@
         padding: 6px 8px 8px 16px;
       }
       .lang-btn {
+        min-width: 44px;
         min-height: 36px;
-        padding: 0 14px;
+        padding: 0 8px;
         border: 1px solid var(--line);
         border-radius: 999px;
         background: transparent;
         color: var(--muted);
         font-family: inherit;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 800;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
         cursor: pointer;
       }
@@ -675,15 +676,86 @@
         .brand-name .brand-top,
         .brand-name .brand-city { font-size: 8px; letter-spacing: 0.08em; }
         .brand-name .brand-title { font-size: 14px; letter-spacing: 0.22em; }
-        .lang-btn { padding: 0 10px; font-size: 10px; min-height: 34px; }
+        .lang-btn { min-width: 40px; padding: 0 8px; font-size: 11px; min-height: 34px; }
       }
+
+      .fx-layer {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero .fx-layer { z-index: 0; }
+      .hero-copy, #o-nama .wrap, #programi .wrap, #kamp .wrap { position: relative; z-index: 1; }
+      #o-nama, #programi, #kamp { position: relative; overflow: hidden; }
+      .ball {
+        position: absolute;
+        width: 76px;
+        height: 76px;
+        opacity: 0.2;
+        filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
+      }
+      .fx-tag {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        z-index: 2;
+        padding: 5px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(7, 20, 13, 0.72);
+        color: var(--gold);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+      @keyframes ball-float {
+        0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+        50% { transform: translate3d(18px, -32px, 0) rotate(28deg); }
+      }
+      @keyframes ball-drift {
+        0% { transform: translate3d(-30%, 0, 0) rotate(0deg); }
+        100% { transform: translate3d(130%, -48px, 0) rotate(420deg); }
+      }
+      .fx-float .ball { animation: ball-float 7s ease-in-out infinite; }
+      .fx-float .ball:nth-child(2) { animation-duration: 9.5s; animation-delay: -2s; }
+      .fx-float .ball:nth-child(3) { animation-duration: 6.2s; animation-delay: -4s; }
+      .fx-float .ball:nth-child(4) { animation-duration: 11s; animation-delay: -1s; }
+      .fx-drift .ball { animation: ball-drift 16s linear infinite; }
+      .fx-drift .ball:nth-child(2) { animation-duration: 22s; animation-delay: -6s; }
+      .fx-drift .ball:nth-child(3) { animation-duration: 19s; animation-delay: -11s; }
+      .fx-reveal .ball {
+        opacity: 0;
+        transform: translate3d(-40px, 50px, 0) scale(0.7);
+        transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .fx-reveal.is-in .ball {
+        opacity: 0.2;
+        transform: none;
+        animation: ball-float 8s ease-in-out infinite;
+      }
+      .fx-reveal.is-in .ball:nth-child(2) { animation-delay: 0.2s; }
+      .fx-reveal.is-in .ball:nth-child(3) { transition-delay: 0.15s; animation-delay: 0.4s; }
+      .fx-parallax .ball { will-change: transform; }
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
+        .fx-layer { display: none; }
       }
     </style>
   </head>
   <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute">
+      <symbol id="soccer" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#f4f8fc"/>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="#102418" stroke-width="2.5"/>
+        <path fill="#141414" d="M32 16.5 41 23l-3.5 10.5h-11L22.5 23z"/>
+        <path fill="none" stroke="#141414" stroke-linejoin="round" stroke-width="2" d="m32 16.5-9.5 6.5-8-3.2 4.2-11.2 13.3 1.2Zm9.5 6.5 8-3.2-4.2-11.2L32 16.5m5.5 17 7.8 6.2 9.2-5.4-2.2-12.4-9.3-2.1M22.5 33.5l-7.8 6.2-9.2-5.4 2.2-12.4 9.3-2.1M27.5 33.5 21 47.2 32 54l11-6.8-6.5-13.7"/>
+      </symbol>
+    </svg>
     <a class="skip" href="#sadrzaj" data-i18n="skip">Пређи на садржај</a>
     <header class="site-header">
       <div class="header-bar">
@@ -715,9 +787,9 @@
       </div>
       <div class="lang-bar">
         <div class="lang-bar-inner" role="group" aria-label="Language">
-          <button type="button" class="lang-btn is-active" data-lang="cyr">Кирилица</button>
-          <button type="button" class="lang-btn" data-lang="lat">Латиница</button>
-          <button type="button" class="lang-btn" data-lang="en">English</button>
+          <button type="button" class="lang-btn is-active" data-lang="cyr" aria-label="Ћирилица">ЋИ</button>
+          <button type="button" class="lang-btn" data-lang="lat" aria-label="Latinica">LA</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
         </div>
       </div>
     </header>
@@ -726,6 +798,13 @@
       <section class="hero" id="naslovna">
         <div class="hero-media" aria-hidden="true">
           <img src="assets/leopold-hero.jpg" alt="">
+        </div>
+        <div class="fx-layer fx-float" data-fx="float" aria-hidden="true">
+          <svg class="ball" style="left:6%;top:18%;width:92px;height:92px"><use href="#soccer"/></svg>
+          <svg class="ball" style="right:10%;top:28%;width:58px;height:58px;opacity:.16"><use href="#soccer"/></svg>
+          <svg class="ball" style="left:18%;bottom:12%;width:44px;height:44px;opacity:.18"><use href="#soccer"/></svg>
+          <svg class="ball" style="right:22%;bottom:22%;width:70px;height:70px"><use href="#soccer"/></svg>
+          <span class="fx-tag">A · CSS float</span>
         </div>
         <div class="wrap hero-copy">
           <p class="eyebrow" data-i18n="eyebrow">Београд · Србија</p>
@@ -747,6 +826,12 @@
       </section>
 
       <section id="o-nama">
+        <div class="fx-layer fx-parallax" data-fx="parallax" aria-hidden="true">
+          <svg class="ball" data-speed="-0.18" style="left:4%;top:8%;width:96px;height:96px"><use href="#soccer"/></svg>
+          <svg class="ball" data-speed="0.12" style="right:6%;top:30%;width:64px;height:64px;opacity:.16"><use href="#soccer"/></svg>
+          <svg class="ball" data-speed="0.28" style="left:12%;bottom:6%;width:50px;height:50px;opacity:.18"><use href="#soccer"/></svg>
+          <span class="fx-tag">B · scroll parallax</span>
+        </div>
         <div class="wrap split">
           <div>
             <div class="section-head">
@@ -793,6 +878,12 @@
       </section>
 
       <section id="programi">
+        <div class="fx-layer fx-reveal" data-fx="reveal" aria-hidden="true">
+          <svg class="ball" style="left:3%;top:12%;width:84px;height:84px"><use href="#soccer"/></svg>
+          <svg class="ball" style="right:8%;top:8%;width:52px;height:52px"><use href="#soccer"/></svg>
+          <svg class="ball" style="right:18%;bottom:10%;width:72px;height:72px"><use href="#soccer"/></svg>
+          <span class="fx-tag">C · reveal</span>
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="kicker" data-i18n="progKicker">02 · Програми обуке</p>
@@ -953,6 +1044,12 @@
       </section>
 
       <section id="kamp">
+        <div class="fx-layer fx-drift" data-fx="drift" aria-hidden="true">
+          <svg class="ball" style="top:18%;width:70px;height:70px"><use href="#soccer"/></svg>
+          <svg class="ball" style="top:48%;width:44px;height:44px;opacity:.16"><use href="#soccer"/></svg>
+          <svg class="ball" style="top:72%;width:86px;height:86px"><use href="#soccer"/></svg>
+          <span class="fx-tag">D · drift</span>
+        </div>
         <div class="wrap camp">
           <div>
             <div class="section-head">
@@ -1403,6 +1500,40 @@
         if (saved && I18N[saved]) start = saved;
       } catch (e) {}
       applyLang(start);
+
+      (function fxBalls() {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const parallaxSection = document.querySelector("[data-fx='parallax']");
+        const revealLayers = document.querySelectorAll("[data-fx='reveal']");
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("is-in", entry.isIntersecting);
+          });
+        }, { threshold: 0.22 });
+        revealLayers.forEach((el) => io.observe(el));
+
+        let ticking = false;
+        function updateParallax() {
+          ticking = false;
+          if (!parallaxSection) return;
+          const rect = parallaxSection.getBoundingClientRect();
+          const view = window.innerHeight;
+          if (rect.bottom < 0 || rect.top > view) return;
+          const p = (view - rect.top) / (view + rect.height) - 0.5;
+          parallaxSection.querySelectorAll(".ball").forEach((ball) => {
+            const speed = Number(ball.getAttribute("data-speed") || "0.15");
+            ball.style.transform =
+              "translate3d(" + (p * speed * 90) + "px," + (p * speed * 280) + "px,0) rotate(" + (p * 48) + "deg)";
+          });
+        }
+        window.addEventListener("scroll", () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateParallax);
+          }
+        }, { passive: true });
+        updateParallax();
+      })();
     </script>
     <script type="application/ld+json">
       {
